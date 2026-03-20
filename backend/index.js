@@ -1,5 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const hairstylesRouter = require("./routes/hairstyles");
+const categoryRouter = require("./routes/categories");
+const favoritesRouter = require("./routes/favorites");
 
 const app = express();
 const PORT = 3001;
@@ -11,14 +14,13 @@ app.get("/", (req, res) => {
   res.json({ message: "CutBook backend is running" });
 });
 
-app.get("/hairstyles", (req, res) => {
-  res.json([
-    { id: 1, name: "Buzz Cut", category: "Short" },
-    { id: 2, name: "Fade", category: "Modern" },
-    { id: 3, name: "Wolf Cut", category: "Layered" }
-  ]);
-});
+app.use("/hairstyles", hairstylesRouter);
+app.use("/categories", categoryRouter);
+app.use("/favorites", favoritesRouter);
+
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+
