@@ -16,4 +16,5 @@ model Hairstyle {
   id       Int    @id @default(autoincrement())
   name     String
   category String
+  published Boolean  @default(false)
 }

@@ -3,13 +3,15 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function main() {
+  // Insert a batch of sample hairstyle records into the database.
+  await prisma.hairstyle.deleteMany();
   await prisma.hairstyle.createMany({
     data: [
-      { name: "Buzz Cut", category: "Short" },
-      { name: "Low Fade", category: "Modern" },
-      { name: "Wolf Cut", category: "Layered" },
-      { name: "Crew Cut", category: "Short" },
-      { name: "Curly Top Fade", category: "Curly" }
+      { name: "Buzz Cut", category: "Short", published: true },
+      { name: "Low Fade", category: "Modern", published: true },
+      { name: "Wolf Cut", category: "Layered", published: false },
+      { name: "Crew Cut", category: "Short", published: true },
+      { name: "Curly Top Fade", category: "Curly", published: false }
     ],
   });
 

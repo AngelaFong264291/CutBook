@@ -40,11 +40,16 @@ router.get("/:id", async (req, res) => {
 // Create a new hairstyle
 router.post("/", async (req, res) => {
   // Get data from request body
-  const { name, category } = req.body;
+  const { name, category, published } = req.body;
 
   // Create a new record in the database
   const newHairstyle = await prisma.hairstyle.create({
-    data: { name, category },
+    data: {
+      name,
+      category,
+      // If published is not provided, default to false
+      published: published ?? false,
+    },
   });
 
   // Return the created item
@@ -59,15 +64,41 @@ router.put("/:id", async (req, res) => {
   const id = Number(req.params.id);
 
   // Get updated data from request body
-  const { name, category } = req.body;
+  const { name, category, published } = req.body;
 
   // Update the hairstyle in the database
   const updatedHairstyle = await prisma.hairstyle.update({
     where: { id },
-    data: { name, category },
+    data: {
+      name,
+      category,
+      published,
+    },
   });
 
   // Return updated result
+  res.json(updatedHairstyle);
+});
+
+
+// PATCH /hairstyles/:id/publish
+// Change only the publish status of a hairstyle
+router.patch("/:id/publish", async (req, res) => {
+  // Get id from URL
+  const id = Number(req.params.id);
+
+  // Get the new publish state from request body
+  const { published } = req.body;
+
+  // Update only the published field
+  const updatedHairstyle = await prisma.hairstyle.update({
+    where: { id },
+    data: {
+      published,
+    },
+  });
+
+  // Return the updated hairstyle
   res.json(updatedHairstyle);
 });
 

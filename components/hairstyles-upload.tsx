@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, Button, TextInput, View } from "react-native";
+import { Alert, Button, Switch, Text, TextInput, View } from "react-native";
 
 export default function AdminUploadScreen() {
   // Store user input for hairstyle name
@@ -7,6 +7,9 @@ export default function AdminUploadScreen() {
 
   // Store user input for category
   const [category, setCategory] = useState("");
+
+  // Store whether the hairstyle should be published or not
+  const [published, setPublished] = useState(false);
 
   // This function runs when the user presses the button
   async function handleSubmit() {
@@ -19,6 +22,7 @@ export default function AdminUploadScreen() {
       body: JSON.stringify({
         name,       // value from name input
         category,   // value from category input
+        published,  // publish status from switch
       }),
     });
 
@@ -37,8 +41,8 @@ export default function AdminUploadScreen() {
       {/* Input field for hairstyle name */}
       <TextInput
         placeholder="Hairstyle name"
-        value={name} // shows current state
-        onChangeText={setName} // updates state when typing
+        value={name}
+        onChangeText={setName}
       />
 
       {/* Input field for category */}
@@ -47,6 +51,10 @@ export default function AdminUploadScreen() {
         value={category}
         onChangeText={setCategory}
       />
+
+      {/* Toggle whether this hairstyle should be published */}
+      <Text>Published</Text>
+      <Switch value={published} onValueChange={setPublished} />
 
       {/* Button to submit form */}
       <Button
