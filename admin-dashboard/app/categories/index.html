@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CutBook Admin - Categories</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Admin Dashboard</p>
+          <h1>Categories</h1>
+          <p class="hero-copy">
+            Categories are currently fixed and come from the hairstyle data already stored in the
+            backend.
+          </p>
+        </div>
+        <a class="secondary-button link-button" href="/app/dashboard/">Back to Dashboard</a>
+      </header>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Current Category Setup</h2>
+          <p>
+            This admin version keeps categories read-only, which matches your current backend
+            design.
+          </p>
+        </div>
+
+        <div class="list">
+          <article class="card">
+            <div class="card-title">How it works</div>
+            <p class="hero-copy">
+              The backend derives categories from hairstyle records, so there is no create, edit,
+              or delete category form yet.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-title">Next upgrade</div>
+            <p class="hero-copy">
+              If you later want fully managed categories, you can add a Category model in Prisma
+              and build category CRUD screens here.
+            </p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

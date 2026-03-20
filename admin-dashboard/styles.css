@@ -49,6 +49,12 @@ body {
   margin-bottom: 24px;
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .eyebrow {
   margin: 0 0 10px;
   text-transform: uppercase;
@@ -142,6 +148,13 @@ button {
   color: var(--text);
 }
 
+.link-button {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .status-message {
   min-height: 24px;
   margin-bottom: 12px;
@@ -151,6 +164,31 @@ button {
 .list {
   display: grid;
   gap: 14px;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.nav-card {
+  border: 1px solid var(--panel-border);
+  background: #121821;
+  border-radius: 18px;
+  padding: 20px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.nav-card p {
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .card {

@@ -13,8 +13,10 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
+  // Serve index.html automatically for directory-style routes.
   const urlPath = req.url === "/" ? "/index.html" : req.url;
-  const filePath = path.join(ROOT, urlPath);
+  const normalizedPath = urlPath.endsWith("/") ? `${urlPath}index.html` : urlPath;
+  const filePath = path.join(ROOT, normalizedPath);
 
   fs.readFile(filePath, (error, data) => {
     if (error) {
