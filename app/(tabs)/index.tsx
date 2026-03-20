@@ -1,57 +1,125 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { Link } from "expo-router";
+import { ScrollView, StyleSheet, Text, View, Pressable } from "react-native";
+
+const featuredHairstyles = [
+  { id: 1, name: "Buzz Cut", category: "Short" },
+  { id: 2, name: "Low Fade", category: "Modern" },
+  { id: 3, name: "Wolf Cut", category: "Layered" },
+];
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Admin Dashboard</ThemedText>
-        {/* Open the upload page for creating a new hairstyle */}
-        <Link href="/hairstyles-upload">
-            <ThemedText type="link">Go to hairstyle upload form</ThemedText>
-        </Link>
-        {/* Open the edit page for updating an existing hairstyle */}
-        <Link href="/hairstyles-edit">
-            <ThemedText type="link">Go to hairstyle edit form</ThemedText>
-        </Link>
-        {/* Open the delete page for removing a hairstyle */}
-        <Link href="/hairstyles-delete">
-            <ThemedText type="link">Go to hairstyle delete form</ThemedText>
-        </Link>
-      </ThemedView>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.heroSection}>
+        <Text style={styles.title}>CutBook</Text>
+        <Text style={styles.subtitle}>Find your next hairstyle with confidence.</Text>
+      </View>
 
-      
-    </ParallaxScrollView>
+      <View style={styles.actionsRow}>
+        <Link href="/browse-styles" asChild>
+          <Pressable style={styles.actionButton}>
+            <Text style={styles.actionText}>Browse Styles</Text>
+          </Pressable>
+        </Link>
+
+        <Link href="/favorites" asChild>
+          <Pressable style={styles.actionButton}>
+            <Text style={styles.actionText}>Favorites</Text>
+          </Pressable>
+        </Link>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Featured Hairstyles</Text>
+
+        {featuredHairstyles.map((style) => (
+          <View key={style.id} style={styles.card}>
+            <Text style={styles.cardTitle}>{style.name}</Text>
+            <Text style={styles.cardSubtitle}>{style.category}</Text>
+          </View>
+        ))}
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Quick Access</Text>
+
+        <Link href="/profile" asChild>
+          <Pressable style={styles.secondaryButton}>
+            <Text style={styles.secondaryButtonText}>Go To Profile</Text>
+          </Pressable>
+        </Link>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    padding: 20,
+    backgroundColor: "#111111",
+    flexGrow: 1,
   },
-  stepContainer: {
-    gap: 8,
+  heroSection: {
+    marginBottom: 24,
+  },
+  title: {
+    fontSize: 34,
+    fontWeight: "700",
+    color: "#ffffff",
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  subtitle: {
+    fontSize: 16,
+    color: "#bbbbbb",
+  },
+  actionsRow: {
+    flexDirection: "row",
+    gap: 12,
+    marginBottom: 28,
+  },
+  actionButton: {
+    backgroundColor: "#2563eb",
+    paddingVertical: 14,
+    paddingHorizontal: 18,
+    borderRadius: 12,
+  },
+  actionText: {
+    color: "#ffffff",
+    fontWeight: "600",
+  },
+  section: {
+    marginBottom: 28,
+  },
+  sectionTitle: {
+    color: "#ffffff",
+    fontSize: 22,
+    fontWeight: "700",
+    marginBottom: 12,
+  },
+  card: {
+    backgroundColor: "#1e1e1e",
+    borderRadius: 14,
+    padding: 16,
+    marginBottom: 12,
+  },
+  cardTitle: {
+    color: "#ffffff",
+    fontSize: 18,
+    fontWeight: "600",
+    marginBottom: 4,
+  },
+  cardSubtitle: {
+    color: "#aaaaaa",
+    fontSize: 14,
+  },
+  secondaryButton: {
+    backgroundColor: "#333333",
+    paddingVertical: 14,
+    paddingHorizontal: 18,
+    borderRadius: 12,
+  },
+  secondaryButtonText: {
+    color: "#ffffff",
+    fontWeight: "600",
   },
 });

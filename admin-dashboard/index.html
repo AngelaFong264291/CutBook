@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CutBook Admin Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Admin Dashboard</p>
+          <h1>Manage CutBook hairstyles</h1>
+          <p class="hero-copy">
+            Upload, edit, publish, unpublish, and delete hairstyles from one place.
+          </p>
+        </div>
+        <button id="refreshButton" class="secondary-button">Refresh Data</button>
+      </header>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Create Hairstyle</h2>
+          <p>Add a new hairstyle record to the backend.</p>
+        </div>
+
+        <form id="createForm" class="form-grid">
+          <label>
+            <span>Name</span>
+            <input id="createName" name="name" type="text" placeholder="Blunt Bob" required />
+          </label>
+
+          <label>
+            <span>Category</span>
+            <input
+              id="createCategory"
+              name="category"
+              type="text"
+              placeholder="Sharp"
+              required
+            />
+          </label>
+
+          <label class="checkbox-row">
+            <input id="createPublished" name="published" type="checkbox" />
+            <span>Published</span>
+          </label>
+
+          <button class="primary-button" type="submit">Create Hairstyle</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Manage Hairstyles</h2>
+          <p>Edit fields inline, toggle publish state, or delete a record.</p>
+        </div>
+
+        <p id="statusMessage" class="status-message"></p>
+        <div id="hairstylesList" class="list"></div>
+      </section>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "cutbook-admin-dashboard",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  }
+}
