@@ -17,7 +17,7 @@ export default function RootLayout() {
   return (
     // Provide navigation theme colors to every screen in the app.
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      {/* Root stack controls top-level screens like tabs, detail pages, and modals. */}
+      {/* Root stack controls top-level screens like tabs and detail pages,. */}
       <Stack>
         {/* The tab group contains the main bottom-tab screens. */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -32,8 +32,6 @@ export default function RootLayout() {
             headerShadowVisible: false,
           }}
         />
-        {/* This is an extra modal-style route from the Expo starter template. */}
-        <Stack.Screen name="modal" options={{ presentation: "modal", title: "Modal" }} />
       </Stack>
       {/* Keep the device status bar visible above the app screens. */}
       <StatusBar style="auto" />
